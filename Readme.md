@@ -1,4 +1,4 @@
-# Boosted Battery extended range (B2XR) RLOD FIX
+# Boosted Battery extended range (B2XR) RLOD FLASH FIX
 
 <img src="Pictures/RLOD.jpeg" width="65%">
 
@@ -7,13 +7,17 @@ DISCLAMER: DO IT AT YOUR OWN RISK, these batteries can become extremely dangerou
 
 As of 11th June 2020, I haven't thoroughly tested the battery after the FIX (it is too early) -> I don't know if there are any potential side effects yet...
 
+## Introduction
+
+This procedure allows to exit the RLOD error by erasing the content of the SPI flash memory. If your cells are way too unbalanced ( > 500 [mV] ), you may have to manually charge/equalize them before.
+
 
 ## BOM
 * FT232H interface or equivalent recognized by flashrom, for example: [UM232H-B-NC](https://www.digikey.com/product-detail/en/ftdi-future-technology-devices-international-ltd/UM232H-B-NC/768-1160-ND/3770837)
 * Soldering station for SMD components.
 * Small diameter wire (I used KYNAR WRAPPING WIRE AWG 30).
 * Linux computer with flashrom v1.2 installed -> precompiled GNU Linux x64 bin [here](https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Flashrom/flashrom).
-* Optional: multimeter
+* Optional: multimeter.
 * Optional: USB extender for the FT232H.
 
 
@@ -178,11 +182,17 @@ If you have any questions you can find me on the boosted board discord or at: pr
 
 ## FAQ 
 
+Q: How does it work?  
+A: The current theory (which may be inaccurate and wrong) is that when the cells are heavily unbalanced (>500 mV), an error is triggered. As a result, the error and debug data are written to the SPI FLASH. If these information are present, the board stays locked RLOD. Boosted service and support center would then extract and analyze what happened. Thus, clearing this memory removes the RLOD.
+
 Q: What should I do with the dumpflash.bin file?  
 A: This is the backup of the data that were stored in the flash before the erasing process. Keep it!
 
 Q: What is your B2XR firmware?  
 A: I don't know yet, I promise I will add it really soon!
+
+Q: Does it work with any firmware?  
+A: I don't know yet.
 
 Q: Ok, so we erased the content of the flash but would removing the SPI flash do the same?  
 A: Nope, if you do so you will end up with a different RLOD error code.
@@ -191,10 +201,7 @@ Q: What happens if I write back the backup bin data to the flash?
 A: The RLOD comes back, isn't it nice ;P
 
 Q: Does this method work if the cells are unbalanced by more than 500 [mV]?  
-A: I don't know yet, please inform me if it works for you!
-
-Q: Does it work with any firmware?  
-A: I don't know yet.
+A: I don't think so, please inform me if it works!
 
 Q: I accidentally released the push button while erasing the FLASH and got such messages:  
 > Found ISSI flash chip "IS25LP128" (16384 kB, SPI) on ft2232_spi.  
