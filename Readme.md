@@ -178,7 +178,7 @@ If you have any questions you can find me on the boosted board discord or at: pr
 
 ## FAQ 
 
-Q: What should I do with the dumpflash.bin file?
+Q: What should I do with the dumpflash.bin file?  
 A: This is the backup of the data that were stored in the flash before the erasing process. Keep it!
 
 Q: What is your B2XR firmware?  
