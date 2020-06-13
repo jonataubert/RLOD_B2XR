@@ -10,7 +10,7 @@ As of 11th June 2020, I haven't thoroughly tested the battery after the FIX (it 
 ## Introduction
 
 This procedure allows to clear the RLOD error by erasing the content of the SPI flash memory, it worked on my B2XR FW v2.1.7. If your cells are way too unbalanced ( > 500 [mV] ), you may have to manually charge/equalize them before.
-Have a look at the [FAQ](##-FAQ).
+Have a look at the [FAQ](#FAQ).
 
 
 ## BOM
