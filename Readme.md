@@ -9,11 +9,13 @@ As of 11th June 2020, I haven't thoroughly tested the battery after the FIX (it 
 
 ## Introduction
 
-This procedure allows to exit the RLOD error by erasing the content of the SPI flash memory. If your cells are way too unbalanced ( > 500 [mV] ), you may have to manually charge/equalize them before.
+This procedure allows to clear the RLOD error by erasing the content of the SPI flash memory, it worked on my B2XR FW v2.1.7. If your cells are way too unbalanced ( > 500 [mV] ), you may have to manually charge/equalize them before.
+Have a look at the [FAQ](##FAQ).
 
 
 ## BOM
 * FT232H interface or equivalent recognized by flashrom, for example: [UM232H-B-NC](https://www.digikey.com/product-detail/en/ftdi-future-technology-devices-international-ltd/UM232H-B-NC/768-1160-ND/3770837)
+* 5x [Test clips](https://www.digikey.com/product-detail/en/digilent-inc/240-137/1286-1229-ND/9916326) or [here](https://www.digikey.com/products/en/test-and-measurement/test-clips-grabbers-hooks/620/page/1)
 * Soldering station for SMD components.
 * Small diameter wire (I used KYNAR WRAPPING WIRE AWG 30).
 * Linux computer with flashrom v1.2 installed -> precompiled GNU Linux x64 bin [here](https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Flashrom/flashrom).
@@ -47,9 +49,9 @@ In my case the cells were well balanced:
 
 
 Note 1: I don't know if the method works if your cells way too unbalanced.  
-Note 2: I will add a description of the pins to be probed soon :)
+Note 2: I will add a description of the pins to be probed :)
 
-## Add probes to your FT232H
+## Add test clips to your FT232H
 
 To be more effective in the process, I suggest you to equip the pins D0 to D3 and GND with this type of probe, it will allow to easily connect it to the flash memory (see next step).
 <img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/FT232H_probes.jpg" width="30%">
@@ -180,30 +182,47 @@ Note: Make sure the verification is "VERIFIED", otherwise try again to dump and 
 If you have any questions you can find me on the boosted board discord or at: pro(at)jonataubert.com
 
 
-## FAQ 
+##FAQ
 
-Q: How does it work?  
+
+**Q: How does it work?**  
 A: The current theory (which may be inaccurate and wrong) is that when the cells are heavily unbalanced (>500 mV), an error is triggered. As a result, the error and debug data are written to the SPI FLASH. If these information are present, the board stays locked RLOD. Boosted service and support center would then extract and analyze what happened. Thus, clearing this memory removes the RLOD.
 
-Q: What should I do with the dumpflash.bin file?  
+
+**Q: Where else can I find reverse engineering information about BB?**  
+A: [beambreak.org](https://beambreak.org/) and [Lambert](https://github.com/lle/boostedBattery), please let me know if you have other links!
+
+
+**Q: What is your B2XR firmware?**  
+A: v2.1.7
+
+**Q: Does it work with any firmware?**  
+A: I don't know yet, please let me know.
+
+**Q: Does it work with SR batteries?**  
+A: I don't know yet, please inform me if it does the job!
+
+**Q: I don't want to solder anything on the B2XR, how can I do it?**  
+A: You may be able to achieve it by designing a test jig with needles/pogo pins. if you use needles you could eventually don't need to remove the conformal coating anymore!
+
+**Q: Can I do it with macOS or Windows or a Raspberry Pi**  
+A1: flashrom can be installed on macOS using brew, it should work! If it doesn't you can always compile it from [the sources](https://www.flashrom.org/Flashrom/1.2).  
+A2: https://flashrom.org/Windows or maybe using another SPI flash / Windows based software...  
+A3: Yes, from what [I could see](https://www.flashrom.org/RaspberryPi) flashrom uses its integrated SPI lines (header) so you wouldn't even need the FT232H!
+
+**Q: What should I do with the dumpflash.bin file?**  
 A: This is the backup of the data that were stored in the flash before the erasing process. Keep it!
 
-Q: What is your B2XR firmware?  
-A: I don't know yet, I promise I will add it really soon!
-
-Q: Does it work with any firmware?  
-A: I don't know yet.
-
-Q: Ok, so we erased the content of the flash but would removing the SPI flash do the same?  
+**Q: Ok, so we erased the content of the flash but would removing the SPI flash do the same?**  
 A: Nope, if you do so you will end up with a different RLOD error code.
 
-Q: What happens if I write back the backup bin data to the flash?  
+**Q: What happens if I write back the backup bin data to the flash?**  
 A: The RLOD comes back, isn't it nice ;P
 
-Q: Does this method work if the cells are unbalanced by more than 500 [mV]?  
+**Q: Does this method work if the cells are unbalanced by more than 500 [mV]?**  
 A: I don't think so, please inform me if it works!
 
-Q: I accidentally released the push button while erasing the FLASH and got such messages:  
+**Q: I accidentally released the push button while erasing the FLASH and got such messages:**  
 > Found ISSI flash chip "IS25LP128" (16384 kB, SPI) on ft2232_spi.  
 > Erasing and writing flash chip... FAILED at 0x00069000! Expected=0xff, Found=0x00, failed byte count from 0x00069000-0x00069fff: 0x1000
 > ERASE FAILED!  
