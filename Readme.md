@@ -5,7 +5,8 @@
 DISCLAMER: DO IT AT YOUR OWN RISK, these batteries can become extremely dangerous in case of fault. They can self ignite, explode and kill. Before starting, you must prepare your working area, make sure you can easily move the battery to a safe zone in the case things are really going wrong.
 
 
-As of 11th June 2020, I haven't thoroughly tested the battery after the FIX (it is too early) -> I don't know if there are any potential side effects yet...
+11th June 2020: I haven't thoroughly tested the battery after the FIX (it is too early) -> I don't know if there are any potential side effects yet...  
+18th June 2020: I recharged the battery 3 times up to 100% and rode 13 [km], so far so good!
 
 ## Introduction
 
@@ -27,7 +28,7 @@ Have a look at the [FAQ](#FAQ).
 Follow this video: https://www.youtube.com/watch?v=XqM4JGT5Mbk
 
 
-## Optional: Check the voltage levels of the cells
+## Check the voltage levels of the cells
 
 In my case the cells were well balanced:
 
@@ -47,9 +48,14 @@ In my case the cells were well balanced:
    | 12     | 3.480 |
    | 13     | 3.480 |
 
+If you have more than 100 [mV] of difference between the cells, then you should try to manually balance the pack by individually charging the concerned cells.
+As a an option (slower method) you can follow these recommendations (leave the battery plugged on the charger for up to 3 weeks) before or after the flash: https://beambreak.org/articles/xr_rlod_faq/#does-the-bms-balance  
 
-Note 1: I don't know if the method works if your cells way too unbalanced.  
-Note 2: I will add a description of the pins to be probed :)
+Note 1: You could also read the min and max voltages using a CAN interface, see this article: https://beambreak.org/articles/xr_health_check/  
+Note 2: I don't know if the flash method works if your cells way too unbalanced, I guess if you have more than 500 [mV] of difference it may RLOD straight away.  
+Note 3: I will add a description of the pins to be probed :)
+
+
 
 ## Add test clips to your FT232H
 
