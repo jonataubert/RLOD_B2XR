@@ -6,7 +6,7 @@ DISCLAMER: DO IT AT YOUR OWN RISK, these batteries can become extremely dangerou
 
 
 11th June 2020: I haven't thoroughly tested the battery after the FIX (it is too early) -> I don't know if there are any potential side effects yet...  
-18th June 2020: I recharged the battery 3 times up to 100% and rode 13 [km], so far so good!
+22nd June 2020: I recharged the battery 5 times up to 100% and rode 48 [km], so far so good!
 
 ## Introduction
 
