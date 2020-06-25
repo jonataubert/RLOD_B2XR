@@ -29,6 +29,8 @@ Follow this video: https://www.youtube.com/watch?v=XqM4JGT5Mbk
 
 
 ## Check the voltage levels of the cells
+<img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/CELLS_TP.jpg" width="60%">
+
 
 In my case the cells were well balanced:
 
@@ -53,7 +55,6 @@ As a an option (slower method) you can follow these recommendations (leave the b
 
 Note 1: You could also read the min and max voltages using a CAN interface, see this article: https://beambreak.org/articles/xr_health_check/  
 Note 2: I don't know if the flash method works if your cells way too unbalanced, I guess if you have more than 500 [mV] of difference it may RLOD straight away.  
-Note 3: I will add a description of the pins to be probed :)
 
 
 
@@ -94,21 +95,26 @@ Thus, it is **safer** to do it before attempting a connection to the SPI flash a
 ## Disable the microcontroller
 
 * For this you need to connect MCLR to GND.
-<img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/MCLR_GND.png" width="20%">
+<img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/MCLR_GND.png" width="35%">
 
 
-* Solder two wires here so that you can bind them!
-<img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/MCLR_CONNECT.png" width="25%">
+* Solder two wires here!
+<img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/MCLR_CONNECT.png" width="35%">
+
+
+* Connect the other ends to each other.  
+<img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/MCLR_GND_WIRES.jpg" width="40%">
+
 
 ## Remove the conformal coating around the flash memory (U5)
 
-* Use plastic tools, example: <img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/tool_coating.jpg" width="25%">
+* Use plastic tools, example: <img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/tool_coating.jpg" width="30%">
 
 
 
 ## Solder the wires to the SPI FLASH memory 
 
-<img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/FLASH_CONNECT.jpg" width="30%">
+<img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/FLASH_CONNECT.jpg" width="40%">
 
 
 
