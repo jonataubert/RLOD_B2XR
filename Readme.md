@@ -20,8 +20,9 @@ Have a look at the [FAQ](#FAQ).
 * Soldering station for SMD components.
 * Small diameter wire (I used KYNAR WRAPPING WIRE AWG 30).
 * Linux computer with flashrom v1.2 installed -> precompiled GNU Linux x64 bin [here](https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Flashrom/flashrom).
-* Optional: multimeter.
+* Recommended: multimeter.
 * Optional: USB extender for the FT232H.
+* Optional: [TC2030-IDC](https://www.digikey.com/product-detail/en/tag-connect-llc/TC2030-IDC/TC2030-IDC-ND/4571121) connector, use it to reduce the number of wires to solder from 6 to 4. 
 
 
 ## Disassembling the battery
@@ -98,12 +99,12 @@ Thus, it is **safer** to do it before attempting a connection to the SPI flash a
 <img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/MCLR_GND.png" width="35%">
 
 
-* Solder two wires here!
+* Solder two wires on pins 1 and 3 or connect the TC2030-IDC cable.
 <img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/MCLR_CONNECT.png" width="35%">
-
+<img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/TC2030.png" width="35%">
 
 * Connect the other ends to each other.  
-<img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/MCLR_GND_WIRES.jpg" width="40%">
+<img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/MCLR_GND_WIRES.jpg" width="30%">
 
 
 ## Remove the conformal coating around the flash memory (U5)
