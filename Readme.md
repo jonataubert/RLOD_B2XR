@@ -21,6 +21,7 @@ Have a look at the [FAQ](#FAQ).
 * Small diameter wire (I used KYNAR WRAPPING WIRE AWG 30).
 * Linux computer with flashrom v1.2 installed -> precompiled GNU Linux x64 bin [here](https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Flashrom/flashrom).
 * Recommended: multimeter.
+* Recommended: Clamp / tool to keep the BMS push button pressed.
 * Optional: USB extender for the FT232H.
 * Optional: [TC2030-IDC](https://www.digikey.com/product-detail/en/tag-connect-llc/TC2030-IDC/TC2030-IDC-ND/4571121) connector, use it to reduce the number of wires to solder from 6 to 4. 
 
@@ -51,17 +52,20 @@ In my case the cells were well balanced:
    | 12     | 3.480 |
    | 13     | 3.480 |
 
+
+Please contact me if you measured a voltage greater than 4 [V]  
+
 If you have more than 100 [mV] of difference between the cells, then you should try to manually balance the pack by individually charging the concerned cells.
-As a an option (slower method) you can follow these recommendations (leave the battery plugged on the charger for up to 3 weeks) before or after the flash: https://beambreak.org/articles/xr_rlod_faq/#does-the-bms-balance  
+As a an option (slower method) you can follow these recommendations (leave the battery plugged on the charger for up to 3 weeks) before the flash: https://beambreak.org/articles/xr_rlod_faq/#does-the-bms-balance  
 
 Note 1: You could also read the min and max voltages using a CAN interface, see this article: https://beambreak.org/articles/xr_health_check/  
-Note 2: I don't know if the flash method works if your cells way too unbalanced, I guess if you have more than 500 [mV] of difference it may RLOD straight away.  
+Note 2: If you have more than 500 [mV] of difference it will throw the RLOD again straight away, thanks Venutech for the feedback! 
 
 
 
 ## Add test clips to your FT232H
 
-To be more effective in the process, I suggest you to equip the pins D0 to D3 and GND with this type of probe, it will allow to easily connect it to the flash memory (see next step).
+To be more effective in the process, I suggest you to equip the pins D0 to D3 and GND with this type of probe, it will allow to easily connect it to the flash memory (see next step). Alternatively you can also use a breadboard.
 <img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/FT232H_probes.jpg" width="30%">
 
 
@@ -134,7 +138,7 @@ WARNING: make sure the FT232H gpios were properly configured by the command **fl
 
 For this step, you will need your Linux terminal and your finger to keep pressing the push button of the battery during the flashing operations. (As the MCU is disabled the logic power rail is not held by the FW anymore).  
 
-Have a look at the FAQ before doing this.
+Have a look at the [FAQ](#FAQ) before doing this.
 
 * **Keep pressing the push button of the battery.**
 
@@ -173,9 +177,9 @@ Note: Make sure the verification is "VERIFIED", otherwise try again to dump and 
 > Erasing and writing flash chip...
 
 
-* **Wait for 5 minutes (use this opportunity to reflect about life stuff).**
+* **Wait for up to 10 minutes for the operation to complete (use this opportunity to reflect about life stuff).**
 
-* **Press ctrl-c to exit this never ending operation**
+* **Press ctrl-c to exit this never ending operation (if it still didn't finish)**
 
 * **flashrom -p ft2232_spi:type=232H**
  
@@ -191,6 +195,10 @@ Note: Make sure the verification is "VERIFIED", otherwise try again to dump and 
 ## Press the push button to switch the battery on, check for green light!
 <img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/B2XR_fixed.jpg" width="55%">
 
+## Connect the battery to the charger and wait for the green light (fully charged)
+Erasing the flash causes the charge indicator to go to 50%. I did charge the battery until I got the green light. The measured cell voltage when fully charged is ~3.900 [V].
+
+
 
 If you have any questions you can find me on the boosted board discord or at: pro(at)jonataubert.com
 
@@ -205,18 +213,17 @@ A: The current theory (which may be inaccurate and wrong) is that when the cells
 **Q: Where else can I find reverse engineering information about BB?**  
 A: [beambreak.org](https://beambreak.org/) and [Lambert](https://github.com/lle/boostedBattery), please let me know if you have other links!
 
-
 **Q: What is your B2XR firmware?**  
 A: v2.1.7
 
 **Q: Does it work with any firmware?**  
-A: I don't know yet, please let me know.
+A: v2.1.7 / v1.5.2 / I don't know yet about others, please let me know and I will update the list.
 
 **Q: Does it work with SR batteries?**  
 A: I don't know yet, please inform me if it does the job!
 
 **Q: I don't want to solder anything on the B2XR, how can I do it?**  
-A: You may be able to achieve it by designing a test jig with needles/pogo pins. if you use needles you could eventually don't need to remove the conformal coating anymore!
+A: You may be able to achieve it by designing a test jig with needles/pogo pins. if you use needles you may eventually not need to remove the conformal coating anymore!
 
 **Q: Can I do it with macOS or Windows or a Raspberry Pi**  
 A1: flashrom can be installed on macOS using brew, it should work! If it doesn't you can always compile it from [the sources](https://www.flashrom.org/Flashrom/1.2).  
@@ -233,7 +240,7 @@ A: Nope, if you do so you will end up with a different RLOD error code.
 A: The RLOD comes back, isn't it nice ;P
 
 **Q: Does this method work if the cells are unbalanced by more than 500 [mV]?**  
-A: I don't think so, please inform me if it works!
+A: No, you must have your cells balanced before the flash procedure.
 
 **Q: I accidentally released the push button while erasing the FLASH and got such messages:**  
 > Found ISSI flash chip "IS25LP128" (16384 kB, SPI) on ft2232_spi.  
