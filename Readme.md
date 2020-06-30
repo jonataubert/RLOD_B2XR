@@ -8,10 +8,12 @@ DISCLAMER: DO IT AT YOUR OWN RISK, these batteries can become extremely dangerou
 11th June 2020: I haven't thoroughly tested the battery after the FIX (it is too early) -> I don't know if there are any potential side effects yet...  
 22nd June 2020: I recharged the battery 5 times up to 100% and rode 48 [km], so far so good!
 
+
 ## Introduction
 
-This procedure allows to clear the RLOD error by erasing the content of the SPI flash memory, it worked on my B2XR FW v2.1.7. If your cells are way too unbalanced ( > 500 [mV] ), you may have to manually charge/equalize them before.
-Have a look at the [FAQ](#FAQ).
+This procedure allows to clear the RLOD error by erasing the content of the SPI flash memory, it worked on B2XR FW v2.1.7 and v2.5.1. If your cells are way too unbalanced ( >= 500 [mV] ), make sure to manually charge/equalize them before clearing the memory. Please take the time to read the [FAQ](#FAQ).  
+You don't feel confident in doing it by yourself? Check [here](#FAQ).
+
 
 
 ## BOM
@@ -53,7 +55,7 @@ In my case the cells were well balanced:
    | 13     | 3.480 |
 
 
-Please contact me if you measured a voltage greater than 4 [V]  
+Please contact me if you measured a voltage greater than 4.000 [V]  
 
 If you have more than 100 [mV] of difference between the cells, then you should try to manually balance the pack by individually charging the concerned cells.
 As a an option (slower method) you can follow these recommendations (leave the battery plugged on the charger for up to 3 weeks) before the flash: https://beambreak.org/articles/xr_rlod_faq/#does-the-bms-balance  
@@ -165,7 +167,7 @@ Have a look at the [FAQ](#FAQ) before doing this.
 Note: Make sure the verification is "VERIFIED", otherwise try again to dump and verify.  
 * **Release the push button**
 
-* **Keep pressing the push button**  
+* **Keep pressing the push button (for a long time -> use a clamp)**  
 
 * **flashrom -p ft2232_spi:type=232H -E**
 
@@ -196,8 +198,7 @@ Note: Make sure the verification is "VERIFIED", otherwise try again to dump and 
 <img src="https://raw.githubusercontent.com/jonataubert/RLOD_B2XR/master/Pictures/B2XR_fixed.jpg" width="55%">
 
 ## Connect the battery to the charger and wait for the green light (fully charged)
-Erasing the flash causes the charge indicator to go to 50%. I did charge the battery until I got the green light. The measured cell voltage when fully charged is ~3.900 [V].
-
+I did charge the battery until I got the green light. The measured cell voltage when fully charged is ~3.900 [V].
 
 
 If you have any questions you can find me on the boosted board discord or at: pro(at)jonataubert.com
@@ -209,15 +210,15 @@ If you have any questions you can find me on the boosted board discord or at: pr
 **Q: How does it work?**  
 A: The current theory (which may be inaccurate and wrong) is that when the cells are heavily unbalanced (>500 mV), an error is triggered. As a result, the error and debug data are written to the SPI FLASH. If these information are present, the board stays locked RLOD. Boosted service and support center would then extract and analyze what happened. Thus, clearing this memory removes the RLOD.
 
+**Q: Who can do this procedure for me?**  
+A: USA/CANADA ->  [Venutech](https://www.reddit.com/user/Venutech/)
 
 **Q: Where else can I find reverse engineering information about BB?**  
 A: [beambreak.org](https://beambreak.org/) and [Lambert](https://github.com/lle/boostedBattery), please let me know if you have other links!
 
-**Q: What is your B2XR firmware?**  
-A: v2.1.7
 
 **Q: Does it work with any firmware?**  
-A: v2.1.7 / v1.5.2 / I don't know yet about others, please let me know and I will update the list.
+A: v2.5.1 / v2.1.7 / I don't know yet about others, please let me know and I will update the list.
 
 **Q: Does it work with SR batteries?**  
 A: I don't know yet, please inform me if it does the job!
