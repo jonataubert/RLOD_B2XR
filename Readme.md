@@ -7,12 +7,14 @@ DISCLAMER: DO IT AT YOUR OWN RISK, these batteries can become extremely dangerou
 
 11th June 2020: I haven't thoroughly tested the battery after the FIX (it is too early) -> I don't know if there are any potential side effects yet...  
 22nd June 2020: I recharged the battery 5 times up to 100% and rode 48 [km], so far so good!
+28th November 2020: A way better method is available -> [AMNESIA modchip](https://jonataubert.com/proj/amnesia.php)
 
 
 ## Introduction
 
 This procedure allows to clear the RLOD error by erasing the content of the SPI flash memory, it worked on B2XR FW v2.1.7 and v2.5.1. If your cells are way too unbalanced ( >= 500 [mV] ), make sure to manually charge/equalize them before clearing the memory. Please take the time to read the [FAQ](#FAQ).  
-You don't feel confident in doing it by yourself? Check [here](#FAQ).
+
+This method has been superseeded by the [AMNESIA modchip](https://jonataubert.com/proj/amnesia.php), please consider it!
 
 
 
@@ -55,10 +57,8 @@ In my case the cells were well balanced:
    | 13     | 3.480 |
 
 
-Please contact me if you measured a voltage greater than 4.000 [V]  
 
 If you have more than 100 [mV] of difference between the cells, then you should try to manually balance the pack by individually charging the concerned cells.
-As a an option (slower method) you can follow these recommendations (leave the battery plugged on the charger for up to 3 weeks) before the flash: https://beambreak.org/articles/xr_rlod_faq/#does-the-bms-balance  
 
 Note 1: You could also read the min and max voltages using a CAN interface, see this article: https://beambreak.org/articles/xr_health_check/  
 Note 2: If you have more than 500 [mV] of difference it will throw the RLOD again straight away, thanks Venutech for the feedback! 
@@ -209,9 +209,6 @@ If you have any questions you can find me on the boosted board discord or at: pr
 
 **Q: How does it work?**  
 A: The current theory (which may be inaccurate and wrong) is that when the cells are heavily unbalanced (>500 mV), an error is triggered. As a result, the error and debug data are written to the SPI FLASH. If these information are present, the board stays locked RLOD. Boosted service and support center would then extract and analyze what happened. Thus, clearing this memory removes the RLOD.
-
-**Q: Who can do this procedure for me?**  
-A: USA/CANADA ->  [Venutech](https://www.reddit.com/user/Venutech/)
 
 **Q: Where else can I find reverse engineering information about BB?**  
 A: [beambreak.org](https://beambreak.org/) and [Lambert](https://github.com/lle/boostedBattery), please let me know if you have other links!
